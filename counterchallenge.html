@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CounterChallenge</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.20/browser.min.js"></script>
+    <script src="https://fb.me/react-0.14.3.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.js"></script>
+    <link rel="stylesheet" type="text/css" href="lesson5challengestyling.css">
+  </head>
+  <body>
+
+    <div id="app"></div>
+    <script type="text/babel">
+    var NumberStateComponent = React.createClass({
+
+      getInitialState: function() {
+        return {
+          number: 0
+        }
+      },
+
+      addone: function() {
+        this.setState({
+          number: this.state.number + 1
+        })
+      },
+
+      addfive: function() {
+        this.setState({
+          number: this.state.number + 5
+        })
+      },
+
+      addten: function() {
+        this.setState({
+          number: this.state.number + 10
+        })
+      },
+
+
+
+      render: function() {
+        return(
+        <div className="container">
+          <h1>Current number is {this.state.number} </h1>
+          <button onClick={this.addone} className="btn blue-btn">Add 1</button>
+          <button onClick={this.addfive} className="btn green-btn">Add 5</button>
+          <button onClick={this.addten} className="btn purple-btn">Add 10</button>
+        </div>
+      )
+      }
+    });
+
+    ReactDOM.render(
+      <NumberStateComponent />,
+      document.getElementById('app')
+    );
+    </script>
+
+  </body>
+  </html>
