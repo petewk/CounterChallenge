@@ -16,41 +16,46 @@
 
       getInitialState: function() {
         return {
-          number: 0
+          count: 0
         }
       },
-
-      addone: function() {
+      incrementCount: function(value) {
         this.setState({
-          number: this.state.number + 1
+          count:this.state.count + value
         })
       },
 
-      addfive: function() {
-        this.setState({
-          number: this.state.number + 5
-        })
+      getDefaultProps: function() {
+        return {
+          valueOne: 10,
+          valueTwo: 50,
+          valueThree: 100,
+          text: 'Add'
+        }
       },
-
-      addten: function() {
-        this.setState({
-          number: this.state.number + 10
-        })
+      alert: function() {
+        alert('Button Clicked!')
       },
-
 
 
       render: function() {
-        return(
+        return (
         <div className="container">
-          <h1>Current number is {this.state.number} </h1>
-          <button onClick={this.addone} className="btn blue-btn">Add 1</button>
-          <button onClick={this.addfive} className="btn green-btn">Add 5</button>
-          <button onClick={this.addten} className="btn purple-btn">Add 10</button>
+          <h1>Current number is {this.state.count}</h1>
+          <Button style="btn blue-btn" text= {`${this.props.text} ${this.props.valueOne}`} value={this.props.valueOne} clickHandler={this.incrementCount.bind(this, this.props.valueOne)} />
+          <Button style="btn green-btn" text={`${this.props.text} ${this.props.valueTwo}`} value={this.props.valueTwo} clickHandler={this.incrementCount.bind(this, this.props.valueTwo)} />
+          <Button style="btn purple-btn" text={`${this.props.text} ${this.props.valueThree}`} value={this.props.valueThree} clickHandler={this.incrementCount.bind(this, this.props.valueThree)} />
+          <Button text="Alert!" clickHandler={this.alert} />
         </div>
-      )
+        )
       }
     });
+
+    var Button = function(props) {
+      return (
+        <button className={props.style} value={props.value} onClick={props.clickHandler}>{props.text}</button>
+      )
+    }
 
     ReactDOM.render(
       <NumberStateComponent />,
